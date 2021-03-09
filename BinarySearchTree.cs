@@ -19,7 +19,7 @@ namespace BinarySearchTree
 
         public void AddItem(int input)
         {
-            if(input > Data)
+            if(input < Data)
             {
                 if (LeftChild == null)
                 {
