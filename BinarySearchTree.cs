@@ -43,12 +43,12 @@ namespace BinarySearchTree
             }
         }
 
-        private void TreeTraverse (List<int> nums)
+        private void DepthFirstInOrder (List<int> nums)
         {
             //Left branch traversal
             if(LeftChild != null)
             {
-                LeftChild.TreeTraverse(nums);
+                LeftChild.DepthFirstInOrder(nums);
             }
 
             //Log current node
@@ -57,21 +57,48 @@ namespace BinarySearchTree
             //Right branch traversal
             if (RightChild != null)
             {
-                RightChild.TreeTraverse(nums);
+                RightChild.DepthFirstInOrder(nums);
             }
+        }
+
+        public List<int> BreadthFirst ()
+        {
+            Queue<BinarySearchTree> queue = new Queue<BinarySearchTree>();
+            List<int> nodeOrder = new List<int>();
+
+            queue.Enqueue(this);
+
+            while(queue.GetCount() != 0)
+            {
+                BinarySearchTree current = queue.Dequeue();
+
+                nodeOrder.Add(current.Data);
+
+                if (current.LeftChild != null)
+                {
+                    queue.Enqueue(current.LeftChild);
+                }
+
+                if (current.RightChild != null)
+                {
+                    queue.Enqueue(current.RightChild);
+                }
+            }
+
+            return nodeOrder;
         }
 
         public int TreeCount ()
         {
             List<int> nums = new List<int>(0);
-            TreeTraverse(nums);
+            DepthFirstInOrder(nums);
             return nums.Count();
         }
 
         public void TreePrint ()
         {
             List<int> nums = new List<int>(0);
-            TreeTraverse(nums);
+            DepthFirstInOrder(nums);
 
             for (int i = 0; i < nums.Count(); i++)
             {

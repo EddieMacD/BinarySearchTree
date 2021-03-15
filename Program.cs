@@ -58,7 +58,17 @@ namespace BinarySearchTree
 
             Console.WriteLine(tree.TreeCount());
             tree.TreePrint();
+
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Breadth First");
+
+            List<int> nodes = tree.BreadthFirst();
+            for (int i = 0; i < nodes.Count(); i++)
+            {
+                Console.Write(nodes[i] + "    ");
+            }
 
             Console.ReadLine();
         }
